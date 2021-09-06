@@ -15,7 +15,7 @@ function Navigation() {
         <HeaderGroup>
           <Link to='/' active={location.pathname === "/"}>
             <Image
-              src='https://i.ibb.co/n11ZjZ4/MSDB2-removebg-preview.png'
+              src='https://i.ibb.co/DW7ywWr/MSDB-removebg-preview-1.png'
               width='120px'
               height='50px'
               to='/'

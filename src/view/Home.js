@@ -1,11 +1,33 @@
 import { Link } from "react-router-dom";
-import { Container } from "semantic-ui-react";
+import { useState, useEffect } from "react";
+import { Container, Grid, Item } from "semantic-ui-react";
+import Movie from "../components/Movie";
 
 function Home() {
+  const [movies, setMovies] = useState();
+
+  useEffect(() => {
+    fetch(
+      "https://api.themoviedb.org/3/movie/popular?api_key=51ea794d32575637252fbd296d17a5e8&language=en-US&page=1"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setMovies(data);
+        console.log(data);
+      });
+  }, []);
+
   return (
     <Container>
-      <h1>MSDB</h1>
-      <h1 style={{ color: "white" }}>CEL MAI MARE SITE DE FILME P0RN0</h1>
+      {/* <Grid columns={6}>
+        {movies.map((movie, index) => {
+          return (
+            <Grid.Column key={index}>
+              <Movie movie={movie}></Movie>
+            </Grid.Column>
+          );
+        })}
+      </Grid> */}
     </Container>
   );
 }
