@@ -12,7 +12,16 @@ function Movie({ movie }) {
   };
 
   return (
-    <Card style={{ zIndex: 0, height: "550px" }} onClick={handleRedirect}>
+    <Card
+      style={{
+        backgroundColor: "#f7e4c1",
+        zIndex: 0,
+        height: "550px",
+        width: "300px",
+        marginLeft: "53px",
+        paddingTop: "10px",
+      }}
+      onClick={handleRedirect}>
       <div style={{ maxHeight: "250px" }}>
         <Image
           src={`${baseImgUrl}/${size}${movie.poster_path}`}
@@ -33,9 +42,9 @@ function Movie({ movie }) {
         <Card.Description>
           <ReadMoreReact
             text={movie.overview}
-            min={100}
-            ideal={300}
-            max={300}
+            min={50}
+            ideal={250}
+            max={250}
             readMoreText=''
           />
           <a onClick={handleRedirect}> Click here to read more!</a>
@@ -45,6 +54,8 @@ function Movie({ movie }) {
         <a>
           <Rating
             icon='star'
+            size='large'
+            disabled
             defaultRating={movie.vote_average}
             maxRating={10}
           />
