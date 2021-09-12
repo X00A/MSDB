@@ -4,7 +4,7 @@ import { Container, Grid, Item } from "semantic-ui-react";
 import Movie from "../components/Movie";
 
 function Home() {
-  const [movies, setMovies] = useState();
+  const [popular, setPopular] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -12,22 +12,23 @@ function Home() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setMovies(data);
-        console.log(data);
+        setPopular(data.results);
+        console.log(data.results);
       });
   }, []);
 
   return (
-    <Container>
-      {/* <Grid columns={6}>
-        {movies.map((movie, index) => {
+    <Container fluid style={{ marginTop: "100px", position: "relative" }}>
+      <h1 style={{ color: "white" }}>Popular Movies</h1>
+      <Grid columns={7}>
+        {popular.map((movie, index) => {
           return (
             <Grid.Column key={index}>
-              <Movie movie={movie}></Movie>
+              <Movie movie={movie} />
             </Grid.Column>
           );
         })}
-      </Grid> */}
+      </Grid>
     </Container>
   );
 }
