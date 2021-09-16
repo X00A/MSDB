@@ -2,13 +2,13 @@ import { Card, Image, Icon, Rating, Divider } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import ReadMoreReact from "read-more-react";
 
-function Movie({ movie }) {
+function Series({ series }) {
   const history = useHistory();
   const baseImgUrl = "https://image.tmdb.org/t/p/";
   const size = "w500";
 
   const handleRedirect = () => {
-    history.push("/movie-detail/" + movie.id);
+    history.push("/series-detail/" + series.id);
   };
 
   return (
@@ -24,7 +24,7 @@ function Movie({ movie }) {
       onClick={handleRedirect}>
       <div style={{ maxHeight: "250px" }}>
         <Image
-          src={`${baseImgUrl}/${size}${movie.poster_path}`}
+          src={`${baseImgUrl}/${size}${series.poster_path}`}
           centered
           size='medium'
           style={{
@@ -35,13 +35,13 @@ function Movie({ movie }) {
         />
       </div>
       <Card.Content>
-        <Card.Header>{movie.original_title}</Card.Header>
+        <Card.Header>{series.original_name}</Card.Header>
         <Card.Meta>
-          <span className='date'>{movie.release_date}</span>
+          <span className='date'>First Air Date: {series.first_air_date}</span>
         </Card.Meta>
         <Card.Description>
           <ReadMoreReact
-            text={movie.overview}
+            text={series.overview}
             min={50}
             ideal={250}
             max={250}
@@ -55,11 +55,11 @@ function Movie({ movie }) {
             icon='star'
             size='large'
             disabled
-            defaultRating={movie.vote_average}
+            defaultRating={series.vote_average}
             maxRating={10}
           />
           <Divider>
-            <h4>{movie.vote_count}</h4>
+            <h4>{series.vote_count}</h4>
           </Divider>
         </a>
       </Card.Content>
@@ -67,4 +67,4 @@ function Movie({ movie }) {
   );
 }
 
-export default Movie;
+export default Series;

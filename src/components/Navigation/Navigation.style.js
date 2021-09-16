@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export const ContainerNavigation = styled.div`
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   opacity: 1;
+  background-color: #141414;
   position: sticky;
   top: 0;
   left: 0;

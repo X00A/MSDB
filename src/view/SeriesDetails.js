@@ -7,9 +7,9 @@ import Cast from "../components/Cast";
 import Collapsible from "react-collapsible";
 import "./MovieDetails.css";
 
-function MovieDetails() {
+function SeriesDetails() {
   const { id } = useParams();
-  const [movie, setMovie] = useState(null);
+  const [series, setSeries] = useState(null);
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [cast, setCast] = useState(null);
@@ -21,19 +21,19 @@ function MovieDetails() {
     if (id) {
       setLoading(true);
       fetch(
-        "https://api.themoviedb.org/3/movie/" +
+        "https://api.themoviedb.org/3/tv/" +
           id +
           "?api_key=51ea794d32575637252fbd296d17a5e8&language=en-US"
       )
         .then((res) => res.json())
-        .then((movie) => {
-          setMovie(movie);
+        .then((series) => {
+          setSeries(series);
           setLoading(false);
-          console.log(movie);
+          console.log(series);
         });
       setLoading(true);
       fetch(
-        "https://api.themoviedb.org/3/movie/" +
+        "https://api.themoviedb.org/3/tv/" +
           id +
           "/videos?api_key=51ea794d32575637252fbd296d17a5e8&language=en-US"
       )
@@ -45,7 +45,7 @@ function MovieDetails() {
         });
       setLoading(true);
       fetch(
-        "https://api.themoviedb.org/3/movie/" +
+        "https://api.themoviedb.org/3/tv/" +
           id +
           "/credits?api_key=51ea794d32575637252fbd296d17a5e8&language=en-US"
       )
@@ -59,13 +59,13 @@ function MovieDetails() {
 
   return (
     <Container maxWidth='xl' style={{ marginTop: "100px" }}>
-      {loading || !movie ? (
+      {loading || !series ? (
         <ReactLoading type='balls' color='white' height={100} width={100} />
       ) : (
         <Grid columns='equal'>
           <Grid.Column>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <Image src={`${baseImgUrl}/${size}${movie.poster_path}`}></Image>
+              <Image src={`${baseImgUrl}/${size}${series.poster_path}`}></Image>
             </div>
           </Grid.Column>
           <Grid.Column>
@@ -82,7 +82,7 @@ function MovieDetails() {
                   fontSize: "50px",
                   color: "white",
                 }}>
-                {movie.original_title}
+                {series.original_name}
               </p>
               <p
                 style={{
@@ -91,11 +91,11 @@ function MovieDetails() {
                   marginLeft: "20px",
                   marginTop: "-40px",
                 }}>
-                Released: {movie.release_date}
+                First Air Date: {series.first_air_date}
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
-              {movie.genres.map((genre) => {
+              {series.genres.map((genre) => {
                 return (
                   <p style={{ color: "grey", marginLeft: "5px" }}>
                     {genre.name}
@@ -107,7 +107,7 @@ function MovieDetails() {
               <Rating
                 icon='star'
                 size='huge'
-                defaultRating={movie.vote_average}
+                defaultRating={series.vote_average}
                 maxRating={10}
                 style={{
                   border: "solid 1px white",
@@ -122,7 +122,7 @@ function MovieDetails() {
                   marginTop: "-3px",
                   fontSize: "20px",
                 }}>
-                {movie.vote_count} Votes
+                {series.vote_count} Votes
               </p>
             </div>
             <p
@@ -131,7 +131,7 @@ function MovieDetails() {
                 fontSize: "30px",
                 textDecoration: "underline",
               }}>
-              {movie.tagline}
+              {series.tagline}
             </p>
             <p
               style={{
@@ -141,7 +141,7 @@ function MovieDetails() {
                 borderRadius: "10px",
                 padding: "10px",
               }}>
-              {movie.overview}
+              {series.overview}
             </p>
             <div>
               {loading || !video ? (
@@ -188,4 +188,4 @@ function MovieDetails() {
   );
 }
 
-export default MovieDetails;
+export default SeriesDetails;

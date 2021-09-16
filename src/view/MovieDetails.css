@@ -1,0 +1,10 @@
+.Collapsible {
+  color: white;
+  border: 1px white solid;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  text-decoration: underline;
+  text-align: center;
+}
